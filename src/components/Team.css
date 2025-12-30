@@ -1,0 +1,245 @@
+.team {
+  padding: 5rem 0;
+  background-color: #f9fafb;
+}
+
+@media (min-width: 1024px) {
+  .team {
+    padding: 7rem 0;
+  }
+}
+
+.team-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 1024px) {
+  .team-container {
+    padding: 0 2rem;
+  }
+}
+
+.team-header {
+  text-align: center;
+  max-width: 42rem;
+  margin: 0 auto 4rem;
+}
+
+.team-header--visible {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.team-header--hidden {
+  opacity: 0;
+}
+
+.team-subtitle {
+  color: #0066cc;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.team-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .team-title {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .team-title {
+    font-size: 3rem;
+  }
+}
+
+.team-description {
+  color: #4b5563;
+  font-size: 1.125rem;
+}
+
+.team-grid {
+  display: grid;
+  gap: 2rem;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.team-grid--visible {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.team-grid--hidden {
+  opacity: 0;
+}
+
+.team-member {
+  /* Group container for hover effects */
+}
+
+.team-member-card {
+  background-color: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.team-member:hover .team-member-card {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transform: translateY(-0.5rem);
+}
+
+.team-member-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.team-member-image-wrapper {
+  aspect-ratio: 1/1;
+  position: relative;
+}
+
+.team-member-gradient {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease;
+}
+
+.team-member:hover .team-member-gradient {
+  transform: scale(1.1);
+}
+
+.team-member-gradient--blue-purple {
+  background: linear-gradient(to bottom right, #2563eb, #9333ea);
+}
+
+.team-member-gradient--green-teal {
+  background: linear-gradient(to bottom right, #22c55e, #0d9488);
+}
+
+.team-member-gradient--orange-red {
+  background: linear-gradient(to bottom right, #f97316, #dc2626);
+}
+
+.team-member-avatar {
+  text-align: center;
+  color: white;
+}
+
+.team-member-avatar-circle {
+  width: 6rem;
+  height: 6rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+}
+
+.team-member-avatar-initials {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+.team-member-social-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #1a1a2e, transparent, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 1.5rem;
+}
+
+.team-member:hover .team-member-social-overlay {
+  opacity: 1;
+}
+
+.team-member-social-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.team-member-social-link {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: white;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0066cc;
+  transition: all 0.3s ease;
+}
+
+.team-member-social-link:hover {
+  background-color: #0066cc;
+  color: white;
+}
+
+.team-member-social-link svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+}
+
+.team-member-content {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.team-member-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.team-member:hover .team-member-name {
+  color: #0066cc;
+}
+
+.team-member-role {
+  color: #4b5563;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
