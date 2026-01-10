@@ -15,11 +15,11 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Works', href: '#works' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About Us', href: '/about-us' },
+    { name: 'Services', href: '/services' },
+    { name: 'Works', href: '/works' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
@@ -32,9 +32,10 @@ const Footer = () => {
             <Link href="/" className="footer-logo">
               <div className="footer-logo-image">
                 <Image
-                  src="/images/logo-white.png"
-                  alt="JICATE"
+                  src="/images/jicate-logo.png"
+                  alt="JICATE Solutions"
                   fill
+                  style={{ objectFit: 'contain' }}
                 />
               </div>
             </Link>
@@ -67,12 +68,12 @@ const Footer = () => {
             <ul className="footer-list">
               {services.map((service, index) => (
                 <li key={index}>
-                  <a href="#services" className="footer-link">
+                  <Link href="/services" className="footer-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                     {service}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -84,12 +85,12 @@ const Footer = () => {
             <ul className="footer-list">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <a href={link.href} className="footer-link">
+                  <Link href={link.href} className="footer-link">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -3,9 +3,8 @@ import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import About from '@/components/About';
 import SolutionProcess from '@/components/SolutionProcess';
-import Portfolio from '@/components/Portfolio';
+import PremiumServices from '@/components/PremiumServices';
 import Team from '@/components/Team';
-import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -17,9 +16,8 @@ export default function Home() {
         <Services />
         <About />
         <SolutionProcess />
-        <Portfolio />
+        <PremiumServices />
         <Team />
-        <Contact />
       </main>
       <Footer />
     </>

@@ -18,11 +18,11 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Works', href: '#works' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About Us', href: '/about-us' },
+    { name: 'Services', href: '/services' },
+    { name: 'Works', href: '/works' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   const socialLinks = [
@@ -73,7 +73,7 @@ const Header = () => {
             <svg className="header-topbar-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span>Working Hours : Monday - Friday 9: - 5 PM</span>
+            <span className="header-topbar-text">Working Hours : Monday - Friday 9 AM - 5 PM</span>
           </div>
           <div className="header-topbar-right">
             <ul className="header-topbar-social">
@@ -107,14 +107,14 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="header-nav">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
                 href={item.href}
                 className="header-nav-link"
               >
                 {item.name}
                 <span className="header-nav-plus">+</span>
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -149,7 +149,7 @@ const Header = () => {
           <nav className="header-mobile-nav">
             <div className="header-mobile-nav-container">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
                   href={item.href}
                   className="header-mobile-link"
@@ -157,7 +157,7 @@ const Header = () => {
                 >
                   {item.name}
                   <span className="header-nav-plus">+</span>
-                </a>
+                </Link>
               ))}
               <div className="header-mobile-social">
                 {socialLinks.map((social) => (

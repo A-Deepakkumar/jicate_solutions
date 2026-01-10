@@ -63,6 +63,68 @@ const services = [
   },
 ];
 
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  icon: string;
+  link: string;
+}
+
+const ServiceCard = ({ service, slidesToShow }: { service: Service; slidesToShow: number }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpand = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsExpanded(!isExpanded);
+  };
+
+  return (
+    <div
+      className="service-card"
+      style={{ width: `${100 / slidesToShow}%` }}
+    >
+      <div className={`service-card-inner ${isExpanded ? 'service-card-inner--expanded' : ''}`}>
+        {/* Background Image */}
+        <div className="service-card-bg">
+          <Image
+            src={service.image}
+            alt={service.title}
+            fill
+            style={{ objectFit: 'cover' }}
+          />
+          <div className="service-card-overlay" />
+        </div>
+
+        {/* Content */}
+        <div className="service-card-content">
+          <div className="service-card-icon">
+            <ServiceIcon type={service.icon} />
+          </div>
+          <h4 className="service-card-title">
+            {service.title}
+          </h4>
+          <p className={`service-card-description ${isExpanded ? 'service-card-description--expanded' : ''}`}>
+            {service.description}
+          </p>
+          <button onClick={toggleExpand} className="service-card-link">
+            {isExpanded ? 'Show Less' : 'Show More'}
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              className={isExpanded ? 'service-card-link-icon--rotated' : ''}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ServiceIcon = ({ type }: { type: string }) => {
   switch (type) {
     case 'code':
@@ -118,8 +180,12 @@ const Services = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(4);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const sliderWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -166,6 +232,34 @@ const Services = () => {
     setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
   };
 
+  // Touch/Mouse drag handlers for smooth finger scrolling
+  const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
+    setIsDragging(true);
+    const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
+    setStartX(pageX);
+    setScrollLeft(currentIndex);
+  };
+
+  const handleDragMove = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
+    const containerWidth = sliderWrapperRef.current?.offsetWidth || 1;
+    // Calculate drag distance as percentage with higher sensitivity for smoother visible scrolling
+    const dragPercentage = (startX - pageX) / containerWidth;
+    const scrollSensitivity = 2.5; // Increased for more responsive scrolling
+    const newIndex = scrollLeft + (dragPercentage * slidesToShow * scrollSensitivity);
+    // Clamp to valid range but allow decimal values for smooth animation
+    const clampedIndex = Math.max(0, Math.min(maxIndex, newIndex));
+    setCurrentIndex(clampedIndex);
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
+    // Snap to nearest card with smooth transition
+    setCurrentIndex(Math.round(currentIndex));
+  };
+
   return (
     <section
       id="services"
@@ -204,52 +298,31 @@ const Services = () => {
         </div>
 
         {/* Services Slider */}
-        <div className={`services-slider-wrapper ${isVisible ? 'services-slider--visible' : 'services-slider--hidden'}`}>
+        <div
+          ref={sliderWrapperRef}
+          className={`services-slider-wrapper ${isVisible ? 'services-slider--visible' : 'services-slider--hidden'} ${isDragging ? 'services-slider--dragging' : ''}`}
+          onMouseDown={handleDragStart}
+          onMouseMove={handleDragMove}
+          onMouseUp={handleDragEnd}
+          onMouseLeave={handleDragEnd}
+          onTouchStart={handleDragStart}
+          onTouchMove={handleDragMove}
+          onTouchEnd={handleDragEnd}
+        >
           <div
             ref={sliderRef}
             className="services-slider"
             style={{
               transform: `translateX(-${currentIndex * (100 / slidesToShow)}%)`,
+              transition: isDragging ? 'none' : 'transform 0.5s ease',
             }}
           >
             {services.map((service) => (
-              <div
+              <ServiceCard
                 key={service.id}
-                className="service-card"
-                style={{ width: `${100 / slidesToShow}%` }}
-              >
-                <div className="service-card-inner">
-                  {/* Background Image */}
-                  <div className="service-card-bg">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                    />
-                    <div className="service-card-overlay" />
-                  </div>
-
-                  {/* Content */}
-                  <div className="service-card-content">
-                    <div className="service-card-icon">
-                      <ServiceIcon type={service.icon} />
-                    </div>
-                    <h4 className="service-card-title">
-                      <a href={service.link}>{service.title}</a>
-                    </h4>
-                    <p className="service-card-description">
-                      {service.description}
-                    </p>
-                    <a href={service.link} className="service-card-link">
-                      Read More
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
+                service={service}
+                slidesToShow={slidesToShow}
+              />
             ))}
           </div>
         </div>

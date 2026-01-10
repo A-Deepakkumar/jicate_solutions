@@ -6,8 +6,8 @@ import './Team.css';
 const teamMembers = [
   {
     id: 1,
-    name: 'John Doe',
-    role: 'CEO & Founder',
+    name: 'Rahul Raj',
+    role: 'Web Developer',
     initials: 'JD',
     gradientClass: 'team-member-gradient--blue-purple',
     social: {
@@ -18,8 +18,8 @@ const teamMembers = [
   },
   {
     id: 2,
-    name: 'Jane Smith',
-    role: 'Technical Director',
+    name: 'Roja',
+    role: 'Automation Tester',
     initials: 'JS',
     gradientClass: 'team-member-gradient--green-teal',
     social: {
@@ -30,8 +30,8 @@ const teamMembers = [
   },
   {
     id: 3,
-    name: 'Mike Johnson',
-    role: 'Lead Developer',
+    name: 'Ramesh',
+    role: 'Marketer',
     initials: 'MJ',
     gradientClass: 'team-member-gradient--orange-red',
     social: {
