@@ -9,13 +9,13 @@ const slides = [
     id: 1,
     subtitle: 'Welcome Our Company',
     title: 'We Provide Truly Prominent IT Solutions',
-    image: '/images/banner-1.jpg',
+    image: '/images/jicate_group_photo.jpg',
   },
   {
     id: 2,
     subtitle: 'Welcome Our Company',
     title: 'Consulting Business can transform quickly',
-    image: '/images/banner-2.jpg',
+    image: '/images/jicate_group_photo.jpg',
   },
   {
     id: 3,
