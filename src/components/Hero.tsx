@@ -17,6 +17,12 @@ const slides = [
     title: 'Consulting Business can transform quickly',
     image: '/images/banner-2.jpg',
   },
+  {
+    id: 3,
+    subtitle: 'Meet Our Team',
+    title: 'Together We Build Innovation and Success',
+    image: '/images/jicate_group_photo.jpg',
+  },
 ];
 
 const Hero = () => {
