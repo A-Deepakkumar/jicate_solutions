@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import './Header.css';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -65,36 +64,44 @@ const Header = () => {
   ];
 
   return (
-    <header className={`header ${isScrolled ? 'header--scrolled' : ''}`}>
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       {/* Top Bar */}
-      <div className="header-topbar">
-        <div className="header-topbar-container">
-          <div className="header-topbar-left">
-            <svg className="header-topbar-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span className="header-topbar-text">Working Hours : Monday - Friday 9 AM - 5 PM</span>
-          </div>
-          <div className="header-topbar-right">
-            <ul className="header-topbar-social">
-              {socialLinks.map((social) => (
-                <li key={social.name}>
-                  <a href={social.href} className="header-topbar-social-link" aria-label={social.name}>
-                    {social.icon}
-                  </a>
-                </li>
-              ))}
-            </ul>
+      {!isScrolled && (
+        <div className="bg-[#6295c4] text-white py-2.5">
+          <div className="max-w-[1280px] mx-auto px-4 lg:px-8 flex items-center justify-between">
+            <div className="flex items-center gap-2 text-sm">
+              <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="whitespace-nowrap text-[0.625rem] min-[360px]:text-[0.6875rem] min-[480px]:text-xs min-[640px]:text-[0.8125rem] md:text-sm overflow-hidden text-ellipsis">
+                Working Hours : Monday - Friday 9 AM - 5 PM
+              </span>
+            </div>
+            <div className="hidden sm:block">
+              <ul className="flex items-center gap-3 list-none m-0 p-0">
+                {socialLinks.map((social) => (
+                  <li key={social.name}>
+                    <a
+                      href={social.href}
+                      className="flex items-center justify-center text-white transition-opacity duration-300 hover:opacity-80 [&_svg]:w-4 [&_svg]:h-4"
+                      aria-label={social.name}
+                    >
+                      {social.icon}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Main Header */}
-      <div className="header-main">
-        <div className="header-main-container">
+      <div className={`bg-white border-b border-gray-200 ${isScrolled ? 'shadow-[0_4px_20px_rgba(0,0,0,0.1)]' : ''}`}>
+        <div className="max-w-[1280px] mx-auto px-4 lg:px-8 py-4 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="header-logo">
-            <div className="header-logo-image">
+          <Link href="/" className="flex items-center">
+            <div className="relative w-[140px] h-[50px] md:w-[160px] md:h-[55px]">
               <Image
                 src="/images/jicate-logo.png"
                 alt="JICATE Solutions"
@@ -105,40 +112,30 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="header-nav">
+          <nav className="hidden lg:flex items-center gap-10">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="header-nav-link"
+                className="nav-link text-[#1a1a2e] font-semibold text-[0.9375rem] uppercase tracking-[0.025em] transition-colors duration-300 hover:text-[#6295c4] flex items-center gap-1"
               >
                 {item.name}
-                <span className="header-nav-plus">+</span>
+                <span className="nav-plus">+</span>
               </Link>
             ))}
           </nav>
 
           {/* Mobile Menu Button */}
           <button
-            className="header-mobile-btn"
+            className="block lg:hidden text-[#1a1a2e] p-2 bg-transparent border-none cursor-pointer"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            <svg viewBox="0 0 24 24">
+            <svg className="w-6 h-6 fill-none stroke-current" viewBox="0 0 24 24">
               {isMobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               )}
             </svg>
           </button>
@@ -146,22 +143,27 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <nav className="header-mobile-nav">
-            <div className="header-mobile-nav-container">
+          <nav className="block lg:hidden bg-white border-t border-gray-200 animate-slide-down">
+            <div className="max-w-[1280px] mx-auto px-4 py-4">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="header-mobile-link"
+                  className="nav-link flex items-center justify-between py-3 text-[#1a1a2e] font-semibold uppercase text-[0.9375rem] border-b border-gray-200 last:border-b-0 transition-colors duration-300 hover:text-[#6295c4]"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
-                  <span className="header-nav-plus">+</span>
+                  <span className="nav-plus">+</span>
                 </Link>
               ))}
-              <div className="header-mobile-social">
+              <div className="flex items-center gap-4 pt-4 mt-2 border-t border-gray-200">
                 {socialLinks.map((social) => (
-                  <a key={social.name} href={social.href} className="header-mobile-social-link" aria-label={social.name}>
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    className="flex items-center justify-center w-9 h-9 bg-[#6295c4] text-white rounded-full transition-colors duration-300 hover:bg-[#4a7aa8] [&_svg]:w-4 [&_svg]:h-4"
+                    aria-label={social.name}
+                  >
                     {social.icon}
                   </a>
                 ))}

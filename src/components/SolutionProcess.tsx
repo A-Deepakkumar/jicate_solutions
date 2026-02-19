@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import './SolutionProcess.css';
 
 const steps = [
   {
@@ -74,64 +73,53 @@ const SolutionProcess = () => {
   return (
     <section
       ref={sectionRef}
-      className="solution-process"
+      className="py-20 lg:py-28 bg-gray-50 relative overflow-hidden"
     >
-      {/* Background decorations */}
-      <div className="solution-process-bg">
-        <div className="solution-process-glow-blue" />
-        <div className="solution-process-glow-cyan" />
-      </div>
-
-      <div className="solution-process-container">
+      <div className="max-w-[1280px] mx-auto px-4 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className={`solution-process-header ${isVisible ? 'solution-process-header--visible' : 'solution-process-header--hidden'}`}>
-          <span className="solution-process-subtitle">
+        <div className={`text-center max-w-2xl mx-auto mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <span className="inline-flex items-center gap-3 text-[#0066cc] font-semibold text-sm uppercase tracking-[0.05em] before:content-[''] before:block before:w-12 before:h-[2px] before:bg-[#0066cc] before:[box-shadow:0_10px_0_#0066cc]">
             WORK PROCESS
           </span>
-          <h2 className="solution-process-title">
+          <h2 className="text-[1.875rem] md:text-[2.25rem] lg:text-[3rem] font-bold text-[#1a1a2e] mt-3 mb-4">
             Our Solution Process
           </h2>
         </div>
 
         {/* Process Steps */}
-        <div className={`solution-process-content ${isVisible ? 'solution-process-content--visible' : 'solution-process-content--hidden'}`}>
+        <div className={`relative ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           {/* Connection Line - Desktop */}
-          <div className="solution-process-line" />
+          <div className="hidden lg:block absolute top-14 left-[12.5%] right-[12.5%] h-px bg-black/10" />
 
-          <div className="solution-process-grid">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, index) => (
               <div
                 key={step.id}
-                className="process-step"
+                className="relative"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 {/* Card */}
-                <div className="process-step-card">
+                <div className="bg-transparent py-8 px-4 text-center transition-all duration-300">
                   {/* Step Number */}
-                  <div className="process-step-number">
+                  <div className="w-28 h-28 bg-black/[0.02] border-2 border-black/[0.08] rounded-full flex items-center justify-center text-black/[0.15] font-light text-5xl mx-auto mb-8 transition-all duration-300 cursor-pointer hover:bg-[#0066cc] hover:border-[#0066cc] hover:text-white hover:scale-105">
                     {step.number}
                   </div>
 
-                  {/* Icon */}
-                  <div className="process-step-icon">
-                    {step.icon}
-                  </div>
-
                   {/* Title */}
-                  <h3 className="process-step-title">
+                  <h3 className="text-xl font-semibold text-[#1a1a2e] mb-4">
                     {step.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="process-step-description">
+                  <p className="text-gray-500 text-[0.9375rem] leading-relaxed max-w-[16rem] mx-auto">
                     {step.description}
                   </p>
                 </div>
 
                 {/* Arrow - Desktop */}
                 {index < steps.length - 1 && (
-                  <div className="process-step-arrow">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="hidden lg:block absolute top-14 -right-10 z-[1]">
+                    <svg className="w-20 h-8 text-[#1a1a2e] opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ strokeDasharray: '4 4' }}>
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </div>

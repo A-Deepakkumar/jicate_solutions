@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import './About.css';
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -68,67 +67,67 @@ const About = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="about"
+      className="py-20 lg:py-28 bg-white relative overflow-hidden"
     >
       {/* Background decorations */}
-      <div className="about-bg-top" />
-      <div className="about-bg-bottom" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[#0066cc]/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#00a8e8]/5 rounded-full translate-y-1/2 -translate-x-1/2" />
 
-      <div className="about-container">
-        <div className="about-grid">
+      <div className="max-w-[1280px] mx-auto px-4 lg:px-8 relative z-10">
+        <div className="grid gap-12 items-center lg:grid-cols-2 lg:gap-20">
           {/* Left side - Images */}
-          <div className={`about-images ${isVisible ? 'about-images--visible' : 'about-images--hidden'}`}>
-            <div className="about-images-wrapper">
+          <div className={`relative ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
+            <div className="relative">
               {/* Main image placeholder */}
-              <div className="about-main-image">
-                <div className="about-main-image-inner">
-                  <div className="about-main-image-content">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="relative z-10 rounded-2xl overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]">
+                <div className="aspect-[4/3] bg-gradient-to-br from-[#1a1a2e] to-[#0066cc] relative flex items-center justify-center">
+                  <div className="text-center text-white/60">
+                    <svg className="w-20 h-20 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                     </svg>
-                    <span>About JICATE</span>
+                    <span className="text-lg font-medium">About JICATE</span>
                   </div>
                 </div>
               </div>
 
               {/* Secondary image placeholder */}
-              <div className="about-secondary-image">
-                <div className="about-secondary-image-inner">
-                  <div className="about-secondary-image-content">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="hidden md:block absolute -bottom-8 -right-8 w-2/3 z-20 rounded-2xl overflow-hidden shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1)] border-4 border-white">
+                <div className="aspect-[4/3] bg-gradient-to-br from-[#0066cc] to-[#00a8e8] relative flex items-center justify-center">
+                  <div className="text-center text-white/60">
+                    <svg className="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
-                    <span>Our Team</span>
+                    <span className="text-sm">Our Team</span>
                   </div>
                 </div>
               </div>
 
               {/* Experience badge */}
-              <div className="about-experience-badge">
-                <div className="about-experience-badge-number">{count}+</div>
-                <div className="about-experience-badge-text">Years<br />Experience</div>
+              <div className="hidden lg:block absolute -left-4 top-1/2 -translate-y-1/2 bg-[#0066cc] text-white rounded-2xl p-6 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1)] z-30">
+                <div className="text-5xl font-bold">{count}+</div>
+                <div className="text-sm mt-1">Years<br />Experience</div>
               </div>
 
               {/* Decorative shape */}
-              <div className="about-decorative-shape" />
+              <div className="absolute -top-4 -left-4 w-24 h-24 border-4 border-[#0066cc]/30 rounded-2xl -z-10" />
             </div>
           </div>
 
           {/* Right side - Content */}
-          <div className={isVisible ? 'about-content--visible' : 'about-content--hidden'}>
-            <span className="about-subtitle">
+          <div className={isVisible ? 'animate-fade-in-right' : 'opacity-0'}>
+            <span className="inline-flex items-center gap-3 text-[#0066cc] font-semibold text-sm uppercase tracking-[0.05em] before:content-[''] before:block before:w-12 before:h-[2px] before:bg-[#0066cc] before:[box-shadow:0_6px_0_#0066cc]">
               About Company
             </span>
-            <h2 className="about-title">
+            <h2 className="text-[1.875rem] md:text-[2.25rem] lg:text-[3rem] font-bold text-[#1a1a2e] mt-3 mb-6 leading-[1.1]">
               Powerful digital experiences driven by{' '}
-              <span className="about-title-highlight">Innovation</span>
+              <span className="text-[#0066cc]">Innovation</span>
             </h2>
-            <p className="about-text">
+            <p className="text-gray-600 text-lg mb-6 leading-relaxed">
               JICATE Solutions is a leading IT company dedicated to delivering innovative technology solutions.
               With over 12 years of experience, we have helped businesses transform their digital presence
               and achieve remarkable growth.
             </p>
-            <p className="about-text-secondary">
+            <p className="text-gray-600 mb-8 leading-relaxed">
               Our team of skilled professionals is committed to providing top-quality services,
               from web development and design to digital marketing and business automation.
               We believe in building lasting relationships with our clients through trust,
@@ -136,16 +135,16 @@ const About = () => {
             </p>
 
             {/* Features */}
-            <div className="about-features">
-              <div className="about-features-list">
+            <div className="mb-8">
+              <div className="flex flex-col gap-4">
                 {features.map((feature, index) => (
-                  <div key={index} className="about-feature">
-                    <div className="about-feature-icon">
+                  <div key={index} className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-[#0066cc]/10 flex items-center justify-center shrink-0 text-[#0066cc] [&_svg]:w-6 [&_svg]:h-6">
                       {feature.icon}
                     </div>
                     <div>
-                      <h4 className="about-feature-title">{feature.title}</h4>
-                      <p className="about-feature-description">{feature.description}</p>
+                      <h4 className="font-bold text-[#1a1a2e] mb-1">{feature.title}</h4>
+                      <p className="text-gray-600 text-sm">{feature.description}</p>
                     </div>
                   </div>
                 ))}
@@ -153,7 +152,7 @@ const About = () => {
             </div>
 
             {/* CTA Button */}
-            <a href="#contact" className="btn-primary about-btn">
+            <a href="#contact" className="inline-flex items-center gap-2 bg-[#0066cc] text-white py-4 px-8 rounded-full font-semibold transition-colors duration-300 hover:bg-[#0055aa] [&_svg]:w-5 [&_svg]:h-5">
               Learn More About Us
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

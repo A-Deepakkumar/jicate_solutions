@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import Header from '@/components/Header';
 import PageBanner from '@/components/PageBanner';
 import Footer from '@/components/Footer';
-import './works.css';
 
 export const metadata: Metadata = {
   title: 'Our Works - JICATE Solutions',
@@ -15,10 +14,10 @@ export default function Works() {
       <Header />
       <main>
         <PageBanner title="Works" breadcrumb="Works" />
-        <section className="coming-soon">
-          <div className="coming-soon-container">
-            <h1 className="coming-soon-title">COMING SOON</h1>
-            <p className="coming-soon-subtitle">We are under construction and will be back soon .</p>
+        <section className="py-24 lg:py-32 bg-gray-50 flex items-center justify-center min-h-[400px]">
+          <div className="text-center px-4">
+            <h1 className="text-[3rem] md:text-[4rem] lg:text-[5rem] font-bold text-[#1a1a2e] tracking-[0.1em] mb-6">COMING SOON</h1>
+            <p className="text-lg md:text-xl text-gray-600">We are under construction and will be back soon .</p>
           </div>
         </section>
       </main>

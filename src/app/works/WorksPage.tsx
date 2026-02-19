@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import './WorksPage.css';
 
 const projects = [
   {
@@ -72,23 +71,23 @@ const WorksPage = () => {
     : projects.filter(project => project.category === activeCategory);
 
   return (
-    <section ref={sectionRef} className="works-page">
-      <div className="works-page-container">
+    <section ref={sectionRef} className="py-20 lg:py-28 bg-gray-50">
+      <div className="max-w-[1280px] mx-auto px-4 lg:px-8">
         {/* Introduction */}
-        <div className={`works-page-intro ${isVisible ? 'works-page-intro--visible' : ''}`}>
-          <h2 className="works-page-intro-title">Our Portfolio</h2>
-          <p className="works-page-intro-text">
+        <div className={`text-center max-w-[800px] mx-auto mb-12 transition-all duration-[600ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'}`}>
+          <h2 className="text-[2rem] md:text-[2.5rem] font-bold text-[#1a1a2e] mb-4">Our Portfolio</h2>
+          <p className="text-lg text-gray-600 leading-[1.7]">
             Explore our latest projects and see how we&apos;ve helped businesses achieve their digital goals.
             Each project represents our commitment to quality and innovation.
           </p>
         </div>
 
         {/* Category Filter */}
-        <div className={`works-page-filter ${isVisible ? 'works-page-filter--visible' : ''}`}>
+        <div className={`flex flex-wrap justify-center gap-3 mb-12 transition-all duration-[600ms] delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[20px]'}`}>
           {categories.map((category) => (
             <button
               key={category}
-              className={`works-page-filter-btn ${activeCategory === category ? 'works-page-filter-btn--active' : ''}`}
+              className={`py-2.5 px-5 border-2 rounded-[50px] font-medium text-[0.9375rem] cursor-pointer transition-all duration-300 font-[inherit] ${activeCategory === category ? 'bg-[#2e8bc9] border-[#2e8bc9] text-white' : 'border-gray-200 bg-white text-gray-600 hover:border-[#2e8bc9] hover:text-[#2e8bc9]'}`}
               onClick={() => setActiveCategory(category)}
             >
               {category}
@@ -97,35 +96,37 @@ const WorksPage = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className={`works-page-grid ${isVisible ? 'works-page-grid--visible' : ''}`}>
+        <div className={`grid gap-8 md:grid-cols-2 transition-opacity duration-[600ms] delay-200 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           {filteredProjects.map((project, index) => (
             <a
               key={project.id}
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="works-page-item"
+              className="block group animate-fade-in-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Image */}
-              <div className="works-page-item-image">
+              <div className="relative h-[350px] md:h-[400px] rounded-2xl overflow-hidden">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
                   style={{ objectFit: 'cover' }}
                 />
-                <div className="works-page-item-overlay">
-                  <div className="works-page-item-overlay-content">
-                    <span className="works-page-item-category">{project.category}</span>
-                    <h3 className="works-page-item-title">{project.title}</h3>
-                    <p className="works-page-item-description">{project.description}</p>
-                    <div className="works-page-item-tags">
+                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(26,26,46,0.95)] via-[rgba(26,26,46,0.7)] to-transparent flex items-end p-8 transition-all duration-300 group-hover:from-[rgba(46,139,201,0.95)] group-hover:via-[rgba(46,139,201,0.8)] group-hover:to-[rgba(46,139,201,0.4)]">
+                  <div className="text-white">
+                    <span className="inline-block bg-white/20 py-1 px-3 rounded-[50px] text-xs font-medium uppercase tracking-[0.05em] mb-3">
+                      {project.category}
+                    </span>
+                    <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
+                    <p className="text-[0.9375rem] text-white/85 leading-[1.5] mb-4">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
                       {project.tags.map((tag, idx) => (
-                        <span key={idx} className="works-page-item-tag">{tag}</span>
+                        <span key={idx} className="bg-white/15 py-1 px-2 rounded text-xs">{tag}</span>
                       ))}
                     </div>
-                    <div className="works-page-item-link">
+                    <div className="inline-flex items-center gap-2 font-semibold text-[0.9375rem] opacity-0 translate-y-[10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 [&_svg]:w-5 [&_svg]:h-5">
                       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
@@ -139,12 +140,12 @@ const WorksPage = () => {
         </div>
 
         {/* CTA Section */}
-        <div className={`works-page-cta ${isVisible ? 'works-page-cta--visible' : ''}`}>
-          <h3 className="works-page-cta-title">Have a Project in Mind?</h3>
-          <p className="works-page-cta-text">
+        <div className={`text-center mt-20 py-16 px-8 bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-3xl transition-all duration-[600ms] delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'}`}>
+          <h3 className="text-[1.75rem] md:text-[2.25rem] font-bold text-white mb-4">Have a Project in Mind?</h3>
+          <p className="text-lg text-white/80 max-w-[600px] mx-auto mb-8">
             Let&apos;s work together to bring your vision to life. Contact us today to discuss your project.
           </p>
-          <a href="/contact" className="works-page-cta-btn">
+          <a href="/contact" className="inline-flex items-center gap-2 bg-[#2e8bc9] text-white py-4 px-8 rounded-[50px] font-semibold text-base transition-all duration-300 hover:bg-[#2579b0] hover:gap-3 [&_svg]:w-5 [&_svg]:h-5">
             Start Your Project
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

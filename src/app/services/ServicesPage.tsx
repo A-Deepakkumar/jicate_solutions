@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import './ServicesPage.css';
 
 const services = [
   {
@@ -136,49 +135,49 @@ const ServicesPage = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="services-page">
-      <div className="services-page-container">
+    <section ref={sectionRef} className="py-20 lg:py-28 bg-gray-50">
+      <div className="max-w-[1280px] mx-auto px-4 lg:px-8">
         {/* Introduction */}
-        <div className={`services-page-intro ${isVisible ? 'services-page-intro--visible' : ''}`}>
-          <h2 className="services-page-intro-title">What We Offer</h2>
-          <p className="services-page-intro-text">
+        <div className={`text-center max-w-[800px] mx-auto mb-16 transition-all duration-[600ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'}`}>
+          <h2 className="text-[2rem] md:text-[2.5rem] font-bold text-[#1a1a2e] mb-4">What We Offer</h2>
+          <p className="text-lg text-gray-600 leading-[1.7]">
             At JICATE Solutions, we provide comprehensive IT services designed to help your business thrive in the digital age.
             With over 12 years of experience, our team delivers innovative solutions tailored to your specific needs.
           </p>
         </div>
 
         {/* Services List */}
-        <div className="services-page-list">
+        <div className="flex flex-col gap-16">
           {services.map((service, index) => (
             <div
               key={service.id}
-              className={`services-page-item ${isVisible ? 'services-page-item--visible' : ''} ${index % 2 === 1 ? 'services-page-item--reverse' : ''}`}
+              className={`grid gap-8 items-center lg:grid-cols-2 lg:gap-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'} ${index % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Image */}
-              <div className="services-page-item-image">
+              <div className="relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden [direction:ltr]">
                 <Image
                   src={service.image}
                   alt={service.title}
                   fill
                   style={{ objectFit: 'cover' }}
                 />
-                <div className="services-page-item-image-overlay" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[rgba(46,139,201,0.1)] to-transparent" />
               </div>
 
               {/* Content */}
-              <div className="services-page-item-content">
-                <div className="services-page-item-icon">
+              <div className="py-4 [direction:ltr]">
+                <div className="w-[70px] h-[70px] bg-[#2e8bc9] rounded-full flex items-center justify-center mb-6 text-white [&_svg]:w-8 [&_svg]:h-8">
                   <ServiceIcon type={service.icon} />
                 </div>
-                <h3 className="services-page-item-title">{service.title}</h3>
-                <p className="services-page-item-description">{service.description}</p>
+                <h3 className="text-[1.75rem] md:text-[2rem] font-bold text-[#1a1a2e] mb-4">{service.title}</h3>
+                <p className="text-base text-gray-600 leading-[1.7] mb-6">{service.description}</p>
 
                 {/* Features */}
-                <ul className="services-page-item-features">
+                <ul className="list-none p-0 m-0 mb-6 grid gap-3 sm:grid-cols-2">
                   {service.features.map((feature, idx) => (
-                    <li key={idx}>
-                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <li key={idx} className="flex items-center gap-2 text-gray-600 text-[0.9375rem]">
+                      <svg className="w-5 h-5 text-[#2e8bc9] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       {feature}
@@ -186,7 +185,7 @@ const ServicesPage = () => {
                   ))}
                 </ul>
 
-                <a href="/contact" className="services-page-item-btn">
+                <a href="/contact" className="inline-flex items-center gap-2 bg-[#2e8bc9] text-white py-[0.875rem] px-[1.75rem] rounded-[50px] font-semibold text-[0.9375rem] transition-all duration-300 hover:bg-[#2579b0] hover:gap-3 [&_svg]:w-5 [&_svg]:h-5">
                   Get Started
                   <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

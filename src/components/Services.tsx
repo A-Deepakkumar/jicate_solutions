@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import './Services.css';
 
 const services = [
   {
@@ -72,7 +71,7 @@ interface Service {
   link: string;
 }
 
-const ServiceCard = ({ service, slidesToShow }: { service: Service; slidesToShow: number }) => {
+const ServiceCard = ({ service, slidesToShow, isDragging }: { service: Service; slidesToShow: number; isDragging: boolean }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpand = (e: React.MouseEvent) => {
@@ -82,39 +81,39 @@ const ServiceCard = ({ service, slidesToShow }: { service: Service; slidesToShow
 
   return (
     <div
-      className="service-card"
+      className="flex-shrink-0 px-3"
       style={{ width: `${100 / slidesToShow}%` }}
     >
-      <div className={`service-card-inner ${isExpanded ? 'service-card-inner--expanded' : ''}`}>
+      <div className={`relative rounded-lg overflow-hidden group ${isExpanded ? 'h-auto min-h-[450px] md:min-h-[480px]' : 'h-[450px] md:h-[480px]'} ${isDragging ? 'pointer-events-none' : ''}`}>
         {/* Background Image */}
-        <div className="service-card-bg">
+        <div className="absolute inset-0">
           <Image
             src={service.image}
             alt={service.title}
             fill
             style={{ objectFit: 'cover' }}
           />
-          <div className="service-card-overlay" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[rgba(26,26,46,0.95)] via-[rgba(26,26,46,0.8)] to-[rgba(26,26,46,0.4)] transition-all duration-300 group-hover:from-[rgba(46,139,201,0.95)] group-hover:via-[rgba(46,139,201,0.8)] group-hover:to-[rgba(46,139,201,0.6)]" />
         </div>
 
         {/* Content */}
-        <div className="service-card-content">
-          <div className="service-card-icon">
+        <div className="absolute bottom-0 left-0 right-0 py-8 px-6 text-white z-[1]">
+          <div className="w-[70px] h-[70px] bg-[#2e8bc9] rounded-full flex items-center justify-center mb-5 transition-all duration-300 [&_svg]:w-8 [&_svg]:h-8 group-hover:bg-white group-hover:text-[#2e8bc9] group-hover:scale-110">
             <ServiceIcon type={service.icon} />
           </div>
-          <h4 className="service-card-title">
+          <h4 className="text-xl font-bold mb-3">
             {service.title}
           </h4>
-          <p className={`service-card-description ${isExpanded ? 'service-card-description--expanded' : ''}`}>
+          <p className={`text-[0.9375rem] leading-relaxed text-white/85 mb-5 transition-all duration-300 ${isExpanded ? '' : 'line-clamp-2'}`}>
             {service.description}
           </p>
-          <button onClick={toggleExpand} className="service-card-link">
+          <button onClick={toggleExpand} className="inline-flex items-center gap-2 text-white font-semibold text-[0.9375rem] transition-all duration-300 bg-transparent border-none p-0 cursor-pointer font-[inherit] hover:text-[#4a9fe8] [&_svg]:w-4 [&_svg]:h-4 [&_svg]:transition-transform [&_svg]:duration-300">
             {isExpanded ? 'Show Less' : 'Show More'}
             <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              className={isExpanded ? 'service-card-link-icon--rotated' : ''}
+              className={isExpanded ? 'rotate-180' : ''}
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
@@ -232,7 +231,6 @@ const Services = () => {
     setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
   };
 
-  // Touch/Mouse drag handlers for smooth finger scrolling
   const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
     setIsDragging(true);
     const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
@@ -245,18 +243,15 @@ const Services = () => {
     e.preventDefault();
     const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
     const containerWidth = sliderWrapperRef.current?.offsetWidth || 1;
-    // Calculate drag distance as percentage with higher sensitivity for smoother visible scrolling
     const dragPercentage = (startX - pageX) / containerWidth;
-    const scrollSensitivity = 2.5; // Increased for more responsive scrolling
+    const scrollSensitivity = 2.5;
     const newIndex = scrollLeft + (dragPercentage * slidesToShow * scrollSensitivity);
-    // Clamp to valid range but allow decimal values for smooth animation
     const clampedIndex = Math.max(0, Math.min(maxIndex, newIndex));
     setCurrentIndex(clampedIndex);
   };
 
   const handleDragEnd = () => {
     setIsDragging(false);
-    // Snap to nearest card with smooth transition
     setCurrentIndex(Math.round(currentIndex));
   };
 
@@ -264,18 +259,18 @@ const Services = () => {
     <section
       id="services"
       ref={sectionRef}
-      className="services"
+      className="pt-20 lg:pt-28 bg-gray-50"
     >
-      <div className="services-container">
+      <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
         {/* Section Header */}
-        <div className={`services-header ${isVisible ? 'services-header--visible' : 'services-header--hidden'}`}>
-          <div className="services-header-content">
-            <span className="services-subtitle">Our Solutions</span>
-            <h2 className="services-title">Popular Services</h2>
+        <div className={`flex flex-col gap-6 mb-12 sm:flex-row sm:items-end sm:justify-between ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <div className="text-center sm:text-left">
+            <span className="inline-flex items-center gap-3 text-[#2e8bc9] font-semibold text-sm uppercase tracking-[0.1em] mb-2 sm:before:content-[''] sm:before:block sm:before:w-12 sm:before:h-[2px] sm:before:bg-[#2e8bc9] sm:before:[box-shadow:0_6px_0_#2e8bc9]">Our Solutions</span>
+            <h2 className="text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold text-[#1a1a2e] m-0">Popular Services</h2>
           </div>
-          <div className="services-header-arrows">
+          <div className="flex gap-3 justify-center sm:justify-end">
             <button
-              className="services-arrow services-arrow--prev"
+              className="w-[50px] h-[50px] border-2 border-[#1a1a2e] bg-transparent rounded-full cursor-pointer flex items-center justify-center transition-all duration-300 text-[#1a1a2e] hover:bg-[#2e8bc9] hover:border-[#2e8bc9] hover:text-white disabled:opacity-40 disabled:cursor-not-allowed [&_svg]:w-5 [&_svg]:h-5"
               onClick={goToPrev}
               disabled={currentIndex === 0}
               aria-label="Previous"
@@ -285,7 +280,7 @@ const Services = () => {
               </svg>
             </button>
             <button
-              className="services-arrow services-arrow--next"
+              className="w-[50px] h-[50px] border-2 border-[#1a1a2e] bg-transparent rounded-full cursor-pointer flex items-center justify-center transition-all duration-300 text-[#1a1a2e] hover:bg-[#2e8bc9] hover:border-[#2e8bc9] hover:text-white disabled:opacity-40 disabled:cursor-not-allowed [&_svg]:w-5 [&_svg]:h-5"
               onClick={goToNext}
               disabled={currentIndex >= maxIndex}
               aria-label="Next"
@@ -300,7 +295,7 @@ const Services = () => {
         {/* Services Slider */}
         <div
           ref={sliderWrapperRef}
-          className={`services-slider-wrapper ${isVisible ? 'services-slider--visible' : 'services-slider--hidden'} ${isDragging ? 'services-slider--dragging' : ''}`}
+          className={`overflow-hidden -mx-3 relative select-none [touch-action:pan-y] ${isDragging ? 'cursor-grabbing' : 'cursor-grab'} ${isVisible ? 'animate-fade-in-up [animation-delay:0.2s]' : 'opacity-0'}`}
           onMouseDown={handleDragStart}
           onMouseMove={handleDragMove}
           onMouseUp={handleDragEnd}
@@ -311,7 +306,7 @@ const Services = () => {
         >
           <div
             ref={sliderRef}
-            className="services-slider"
+            className="flex [will-change:transform]"
             style={{
               transform: `translateX(-${currentIndex * (100 / slidesToShow)}%)`,
               transition: isDragging ? 'none' : 'transform 0.5s ease',
@@ -322,6 +317,7 @@ const Services = () => {
                 key={service.id}
                 service={service}
                 slidesToShow={slidesToShow}
+                isDragging={isDragging}
               />
             ))}
           </div>

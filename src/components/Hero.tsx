@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import './Hero.css';
 
 const slides = [
   {
@@ -58,15 +57,14 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="hero">
+    <section id="home" className="relative h-screen min-h-[600px] overflow-hidden">
       {/* Background Slides */}
       {slides.map((slide, index) => (
         <div
           key={slide.id}
-          className={`hero-slide ${index === currentSlide ? 'hero-slide--active' : 'hero-slide--inactive'}`}
+          className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100 z-[1]' : 'opacity-0 z-0'}`}
         >
-          {/* Background Image */}
-          <div className="hero-bg-image">
+          <div className="absolute inset-0">
             <Image
               src={slide.image}
               alt={slide.title}
@@ -75,27 +73,29 @@ const Hero = () => {
               priority={index === 0}
             />
           </div>
-          {/* Overlay */}
-          <div className="hero-overlay" />
+          <div className="absolute inset-0 bg-black/30" />
         </div>
       ))}
 
       {/* Content */}
-      <div className="hero-content-wrapper">
-        <div className="hero-content">
+      <div className="relative z-10 max-w-[1280px] mx-auto px-4 lg:px-8 h-full flex items-center justify-center">
+        <div className="text-center max-w-[900px] pt-20">
           <div
-            className={`hero-content-animated ${isAnimating ? 'hero-content-animated--visible' : 'hero-content-animated--hidden'}`}
+            className={`transition-all duration-700 ${isAnimating ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
-            <span className="hero-subtitle">
+            <span className="inline-block text-[#4a9fe8] text-base md:text-lg font-medium italic mb-5 tracking-[0.05em]">
               {slides[currentSlide].subtitle}
             </span>
-            <h1 className="hero-title">
+            <h1 className="text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] font-bold text-white leading-[1.15] mb-8 [text-shadow:2px_2px_4px_rgba(0,0,0,0.3)]">
               {slides[currentSlide].title}
             </h1>
-            <div className="hero-button-wrapper">
-              <a href="#works" className="hero-btn">
+            <div className="flex justify-center">
+              <a
+                href="#works"
+                className="inline-flex items-center gap-3 bg-[#2e8bc9] text-white py-4 px-8 rounded-full font-semibold text-[0.9375rem] uppercase tracking-[0.05em] transition-all duration-300 hover:bg-[#2579b0] hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(46,139,201,0.4)]"
+              >
                 Let&apos;s Recent Works
-                <svg className="hero-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
                 </svg>
               </a>
@@ -106,20 +106,20 @@ const Hero = () => {
 
       {/* Navigation Arrows */}
       <button
-        className="hero-arrow hero-arrow--prev"
+        className="absolute top-1/2 -translate-y-1/2 z-20 left-4 md:left-8 lg:left-12 w-[50px] h-[50px] lg:w-[55px] lg:h-[55px] bg-transparent border-none rounded-full text-white cursor-pointer flex items-center justify-center transition-all duration-300 hover:scale-110"
         onClick={goToPrev}
         aria-label="Previous slide"
       >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
       </button>
       <button
-        className="hero-arrow hero-arrow--next"
+        className="absolute top-1/2 -translate-y-1/2 z-20 right-4 md:right-8 lg:right-12 w-[50px] h-[50px] lg:w-[55px] lg:h-[55px] bg-transparent border-none rounded-full text-white cursor-pointer flex items-center justify-center transition-all duration-300 hover:scale-110"
         onClick={goToNext}
         aria-label="Next slide"
       >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
       </button>
