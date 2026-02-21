@@ -112,6 +112,7 @@ const WorksPage = () => {
                   src={project.image}
                   alt={project.title}
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   style={{ objectFit: 'cover' }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[rgba(26,26,46,0.95)] via-[rgba(26,26,46,0.7)] to-transparent flex items-end p-8 transition-all duration-300 group-hover:from-[rgba(46,139,201,0.95)] group-hover:via-[rgba(46,139,201,0.8)] group-hover:to-[rgba(46,139,201,0.4)]">

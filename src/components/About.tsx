@@ -78,7 +78,8 @@ const About = () => {
         <div className="grid gap-12 items-center lg:grid-cols-2 lg:gap-20">
           {/* Left side - Images */}
           <div className={`relative ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
-            <div className="relative">
+            {/* Outer wrapper: extra bottom padding on md to clear secondary image overflow */}
+            <div className="relative pb-0 md:pb-10 lg:pb-0">
               {/* Main image */}
               <div className="relative z-10 rounded-2xl overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]">
                 <div className="aspect-[4/3] relative">
@@ -86,31 +87,34 @@ const About = () => {
                     src="/images/Jicate - About Company.png"
                     alt="About JICATE"
                     fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     style={{ objectFit: 'cover' }}
                   />
                 </div>
               </div>
 
-              {/* Secondary image */}
-              <div className="hidden md:block absolute -bottom-8 -right-8 w-2/3 z-20 rounded-2xl overflow-hidden shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1)] border-4 border-white">
+              {/* Secondary image — only on lg where 2-column layout has side space */}
+              <div className="hidden lg:block absolute -bottom-8 -right-8 w-2/3 z-20 rounded-2xl overflow-hidden shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1)] border-4 border-white">
                 <div className="aspect-[4/3] relative">
                   <Image
                     src="/images/Jicate - Our Team.png"
                     alt="Our Team"
                     fill
+                    sizes="33vw"
                     style={{ objectFit: 'cover' }}
                   />
                 </div>
               </div>
 
               {/* Experience badge */}
-              <div className="hidden lg:block absolute -left-4 top-1/2 -translate-y-1/2 bg-[#0066cc] text-white rounded-2xl p-6 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1)] z-30">
-                <div className="text-5xl font-bold">{count}+</div>
-                <div className="text-sm mt-1">Years<br />Experience</div>
+              <div className="hidden lg:block absolute -left-4 top-1/2 -translate-y-1/2 bg-[#0066cc] text-white rounded-2xl p-5 xl:p-6 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1)] z-30">
+                <div className="text-4xl xl:text-5xl font-bold">{count}+</div>
+                <div className="text-xs xl:text-sm mt-1">Years<br />Experience</div>
               </div>
 
-              {/* Decorative shape */}
-              <div className="absolute -top-4 -left-4 w-24 h-24 border-4 border-[#0066cc]/30 rounded-2xl -z-10" />
+              {/* Decorative shape — hidden on small screens to prevent left overflow */}
+              <div className="hidden sm:block absolute -top-4 -left-4 w-20 h-20 sm:w-24 sm:h-24 border-4 border-[#0066cc]/30 rounded-2xl -z-10" />
             </div>
           </div>
 
@@ -119,11 +123,11 @@ const About = () => {
             <span className="inline-flex items-center gap-3 text-[#0066cc] font-semibold text-sm uppercase tracking-[0.05em] before:content-[''] before:block before:w-12 before:h-[2px] before:bg-[#0066cc] before:[box-shadow:0_6px_0_#0066cc]">
               About Company
             </span>
-            <h2 className="text-[1.875rem] md:text-[2.25rem] lg:text-[3rem] font-bold text-[#1a1a2e] mt-3 mb-6 leading-[1.1]">
+            <h2 className="text-[1.625rem] sm:text-[1.875rem] md:text-[2.25rem] lg:text-[3rem] font-bold text-[#1a1a2e] mt-3 mb-6 leading-[1.1]">
               Powerful digital experiences driven by{' '}
               <span className="text-[#0066cc]">Innovation</span>
             </h2>
-            <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+            <p className="text-gray-600 text-base sm:text-lg mb-6 leading-relaxed">
               JICATE Solutions is a leading IT company dedicated to delivering innovative technology solutions.
               With over 12 years of experience, we have helped businesses transform their digital presence
               and achieve remarkable growth.

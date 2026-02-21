@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
         hostname: 'via.placeholder.com',
       },
     ],
-    unoptimized: true,
+    formats: ['image/avif', 'image/webp'],
   },
 };
 

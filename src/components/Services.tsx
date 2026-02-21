@@ -84,13 +84,14 @@ const ServiceCard = ({ service, slidesToShow, isDragging }: { service: Service; 
       className="flex-shrink-0 px-3"
       style={{ width: `${100 / slidesToShow}%` }}
     >
-      <div className={`relative rounded-lg overflow-hidden group flex flex-col justify-end min-h-[450px] md:min-h-[480px] ${isDragging ? 'pointer-events-none' : ''}`}>
+      <div className={`relative rounded-lg overflow-hidden group flex flex-col justify-end min-h-[380px] sm:min-h-[420px] md:min-h-[480px] ${isDragging ? 'pointer-events-none' : ''}`}>
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
             src={service.image}
             alt={service.title}
             fill
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
             style={{ objectFit: 'cover' }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[rgba(26,26,46,0.95)] via-[rgba(26,26,46,0.45)] to-[rgba(26,26,46,0.05)]" />
@@ -265,14 +266,14 @@ const Services = () => {
     <section
       id="services"
       ref={sectionRef}
-      className="pt-20 lg:pt-28 bg-gray-50"
+      className="pt-16 sm:pt-20 lg:pt-28 pb-16 sm:pb-20 lg:pb-28 bg-gray-50"
     >
       <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
         {/* Section Header */}
         <div className={`flex flex-col gap-6 mb-12 sm:flex-row sm:items-end sm:justify-between ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <div className="text-center sm:text-left">
             <span className="inline-flex items-center gap-3 text-[#2e8bc9] font-semibold text-sm uppercase tracking-[0.1em] mb-2 sm:before:content-[''] sm:before:block sm:before:w-12 sm:before:h-[2px] sm:before:bg-[#2e8bc9] sm:before:[box-shadow:0_6px_0_#2e8bc9]">Our Solutions</span>
-            <h2 className="text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold text-[#1a1a2e] m-0">Popular Services</h2>
+            <h2 className="text-[1.625rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold text-[#1a1a2e] m-0">Popular Services</h2>
           </div>
           <div className="flex gap-3 justify-center sm:justify-end">
             <button

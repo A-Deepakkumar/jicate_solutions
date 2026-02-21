@@ -28,19 +28,19 @@ const PremiumServices = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-gray-50 relative"
+      className="py-16 sm:py-20 lg:py-28 bg-gray-50 relative"
     >
       <div className="max-w-[1280px] mx-auto px-4 lg:px-8">
-        <div className="grid gap-12 items-center lg:grid-cols-2 lg:gap-20">
+        <div className="grid gap-10 sm:gap-12 items-center lg:grid-cols-2 lg:gap-20">
           {/* Illustration */}
           <div className={`order-2 lg:order-1 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
-            <div className="relative max-w-[600px] mx-auto">
+            <div className="relative w-full max-w-[500px] sm:max-w-[600px] mx-auto">
               <Image
                 src="/images/premium-services-illustration.svg"
                 alt="Developer working at computer"
                 width={600}
                 height={500}
-                style={{ objectFit: 'contain' }}
+                style={{ objectFit: 'contain', width: '100%', height: 'auto' }}
               />
             </div>
           </div>
@@ -48,7 +48,7 @@ const PremiumServices = () => {
           {/* Content */}
           <div className={`order-1 lg:order-2 ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
             <span className="inline-flex items-center gap-3 text-[#2e8bc9] font-semibold text-sm uppercase tracking-[0.1em] mb-4 before:content-[''] before:block before:w-12 before:h-[2px] before:bg-[#2e8bc9] before:[box-shadow:0_6px_0_#2e8bc9]">Premium Services</span>
-            <h2 className="text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold text-[#1a1a2e] leading-[1.2] mb-6">
+            <h2 className="text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold text-[#1a1a2e] leading-[1.2] mb-6">
               Sharing expertise<br />
               Building relationships
             </h2>
@@ -58,7 +58,7 @@ const PremiumServices = () => {
               innovation. Together, we create lasting value and impactful digital
               experiences.
             </p>
-            <Link href="/contact" className="inline-flex items-center gap-1 text-[#2e8bc9] font-semibold text-sm uppercase tracking-[0.05em] py-4 px-8 border-2 border-[#2e8bc9] rounded-full transition-all duration-300 bg-transparent hover:bg-[#2e8bc9] hover:text-white [&_svg]:w-5 [&_svg]:h-5">
+            <Link href="/contact" className="inline-flex items-center gap-1 text-[#2e8bc9] font-semibold text-sm uppercase tracking-[0.05em] py-3 sm:py-4 px-6 sm:px-8 border-2 border-[#2e8bc9] rounded-full transition-all duration-300 bg-transparent hover:bg-[#2e8bc9] hover:text-white [&_svg]:w-5 [&_svg]:h-5">
               <span>CONTACT US</span>
               <svg className="ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -73,7 +73,7 @@ const PremiumServices = () => {
 
       {/* Scroll to top button */}
       <button
-        className="fixed bottom-8 right-8 w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 z-40 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:border-[#2e8bc9] text-gray-600 hover:text-[#2e8bc9] [&_svg]:w-5 [&_svg]:h-5"
+        className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 z-40 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:border-[#2e8bc9] text-gray-600 hover:text-[#2e8bc9] [&_svg]:w-4 [&_svg]:h-4 sm:[&_svg]:w-5 sm:[&_svg]:h-5"
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         aria-label="Scroll to top"
       >

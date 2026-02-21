@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { BottomNavbar } from "@/components/BottomNav";
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700', '800'],
@@ -34,6 +35,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${poppins.className} antialiased`} suppressHydrationWarning>
         {children}
+        <BottomNavbar />
       </body>
     </html>
   );

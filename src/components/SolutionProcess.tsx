@@ -81,7 +81,7 @@ const SolutionProcess = () => {
           <span className="inline-flex items-center gap-3 text-[#0066cc] font-semibold text-sm uppercase tracking-[0.05em] before:content-[''] before:block before:w-12 before:h-[2px] before:bg-[#0066cc] before:[box-shadow:0_10px_0_#0066cc]">
             WORK PROCESS
           </span>
-          <h2 className="text-[1.875rem] md:text-[2.25rem] lg:text-[3rem] font-bold text-[#1a1a2e] mt-3 mb-4">
+          <h2 className="text-[1.625rem] sm:text-[1.875rem] md:text-[2.25rem] lg:text-[3rem] font-bold text-[#1a1a2e] mt-3 mb-4">
             Our Solution Process
           </h2>
         </div>
@@ -101,7 +101,7 @@ const SolutionProcess = () => {
                 {/* Card */}
                 <div className="bg-transparent py-8 px-4 text-center transition-all duration-300">
                   {/* Step Number */}
-                  <div className="w-28 h-28 bg-black/[0.02] border-2 border-black/[0.08] rounded-full flex items-center justify-center text-black/[0.15] font-light text-5xl mx-auto mb-8 transition-all duration-300 cursor-pointer hover:bg-[#0066cc] hover:border-[#0066cc] hover:text-white hover:scale-105">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-black/[0.02] border-2 border-black/[0.08] rounded-full flex items-center justify-center text-black/[0.15] font-light text-3xl sm:text-4xl lg:text-5xl mx-auto mb-6 sm:mb-8 transition-all duration-300 cursor-pointer hover:bg-[#0066cc] hover:border-[#0066cc] hover:text-white hover:scale-105">
                     {step.number}
                   </div>
 
