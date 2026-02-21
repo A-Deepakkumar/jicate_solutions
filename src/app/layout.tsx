@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   description: "JICATE Solutions is a leading IT company providing innovative technology solutions including web development, web design, business automation, digital marketing, and more.",
   keywords: "IT solutions, web development, web design, digital marketing, business automation, JICATE Solutions",
   authors: [{ name: "JICATE Solutions" }],
+  icons: {
+    icon: '/images/jicate-logo.png',
+  },
   openGraph: {
     title: "JICATE Solutions - We Provide Truly Prominent IT Solutions",
     description: "JICATE Solutions is a leading IT company providing innovative technology solutions.",

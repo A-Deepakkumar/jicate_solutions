@@ -8,7 +8,7 @@ const services = [
     id: 1,
     title: 'Web Development',
     description: 'Turn your visions into tangible reality through our proficient web development services, crafting innovative, customized, responsive, websites.',
-    image: '/images/services/services-1.jpg',
+    image: '/images/Jicate - Web Development.png',
     icon: 'code',
     link: '#',
   },
@@ -16,7 +16,7 @@ const services = [
     id: 2,
     title: 'Web Design',
     description: 'Should my business have a web application? This is a common question that arises among many budding entrepreneurs and business professionals.',
-    image: '/images/services/services-2.jpg',
+    image: '/images/Jicate - Web Design.png',
     icon: 'design',
     link: '#',
   },
@@ -24,7 +24,7 @@ const services = [
     id: 3,
     title: 'Business Automation',
     description: 'Automate your business processes for efficiency and scalability, streamlining operations and maximizing productivity.',
-    image: '/images/services/services-3.jpg',
+    image: '/images/Jicate - Business Automation.png',
     icon: 'automation',
     link: '#',
   },
@@ -32,7 +32,7 @@ const services = [
     id: 4,
     title: 'Digital Marketing',
     description: 'Boost your online presence with our tailored digital marketing solutions, reaching your target audience effectively and driving growth for your business.',
-    image: '/images/services/services-4.jpg',
+    image: '/images/Jicate - Digital Marketing.png',
     icon: 'marketing',
     link: '#',
   },
@@ -40,7 +40,7 @@ const services = [
     id: 5,
     title: 'WhatsApp Marketing',
     description: 'WhatsApp marketing enables businesses to engage with customers directly, fostering personal connections and driving conversions.',
-    image: '/images/services/services-5.jpg',
+    image: '/images/Jicate - Whatsapp Marketing.png',
     icon: 'whatsapp',
     link: '#',
   },
@@ -48,7 +48,7 @@ const services = [
     id: 6,
     title: 'Social Media Marketing',
     description: 'Unlock your brand\'s potential with our expert Social Media Marketing services! Engage, grow, and succeed with tailored strategies for your unique audience.',
-    image: '/images/services/services-6.jpg',
+    image: '/images/Jicate - Social Media Marketing.png',
     icon: 'social',
     link: '#',
   },
@@ -56,7 +56,7 @@ const services = [
     id: 7,
     title: 'Application Development',
     description: 'Application development involves designing and building software solutions tailored to meet specific needs and requirements.',
-    image: '/images/services/services-7.jpg',
+    image: '/images/Jicate - Application Development.png',
     icon: 'app',
     link: '#',
   },
@@ -84,7 +84,7 @@ const ServiceCard = ({ service, slidesToShow, isDragging }: { service: Service; 
       className="flex-shrink-0 px-3"
       style={{ width: `${100 / slidesToShow}%` }}
     >
-      <div className={`relative rounded-lg overflow-hidden group ${isExpanded ? 'h-auto min-h-[450px] md:min-h-[480px]' : 'h-[450px] md:h-[480px]'} ${isDragging ? 'pointer-events-none' : ''}`}>
+      <div className={`relative rounded-lg overflow-hidden group flex flex-col justify-end min-h-[450px] md:min-h-[480px] ${isDragging ? 'pointer-events-none' : ''}`}>
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
@@ -93,12 +93,12 @@ const ServiceCard = ({ service, slidesToShow, isDragging }: { service: Service; 
             fill
             style={{ objectFit: 'cover' }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[rgba(26,26,46,0.95)] via-[rgba(26,26,46,0.8)] to-[rgba(26,26,46,0.4)] transition-all duration-300 group-hover:from-[rgba(46,139,201,0.95)] group-hover:via-[rgba(46,139,201,0.8)] group-hover:to-[rgba(46,139,201,0.6)]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[rgba(26,26,46,0.95)] via-[rgba(26,26,46,0.45)] to-[rgba(26,26,46,0.05)]" />
         </div>
 
         {/* Content */}
-        <div className="absolute bottom-0 left-0 right-0 py-8 px-6 text-white z-[1]">
-          <div className="w-[70px] h-[70px] bg-[#2e8bc9] rounded-full flex items-center justify-center mb-5 transition-all duration-300 [&_svg]:w-8 [&_svg]:h-8 group-hover:bg-white group-hover:text-[#2e8bc9] group-hover:scale-110">
+        <div className="relative py-8 px-6 text-white z-[1]">
+          <div className="w-[70px] h-[70px] bg-[#2e8bc9] rounded-full flex items-center justify-center mb-5 [&_svg]:w-8 [&_svg]:h-8">
             <ServiceIcon type={service.icon} />
           </div>
           <h4 className="text-xl font-bold mb-3">
@@ -185,6 +185,7 @@ const Services = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const sliderWrapperRef = useRef<HTMLDivElement>(null);
+  const isMouseDownRef = useRef(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -232,25 +233,30 @@ const Services = () => {
   };
 
   const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
-    setIsDragging(true);
+    isMouseDownRef.current = true;
     const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
     setStartX(pageX);
     setScrollLeft(currentIndex);
   };
 
   const handleDragMove = (e: React.MouseEvent | React.TouchEvent) => {
-    if (!isDragging) return;
-    e.preventDefault();
+    if (!isMouseDownRef.current) return;
     const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
-    const containerWidth = sliderWrapperRef.current?.offsetWidth || 1;
-    const dragPercentage = (startX - pageX) / containerWidth;
-    const scrollSensitivity = 2.5;
-    const newIndex = scrollLeft + (dragPercentage * slidesToShow * scrollSensitivity);
-    const clampedIndex = Math.max(0, Math.min(maxIndex, newIndex));
-    setCurrentIndex(clampedIndex);
+    const diff = Math.abs(pageX - startX);
+    if (diff > 5) {
+      e.preventDefault();
+      setIsDragging(true);
+      const containerWidth = sliderWrapperRef.current?.offsetWidth || 1;
+      const dragPercentage = (startX - pageX) / containerWidth;
+      const scrollSensitivity = 2.5;
+      const newIndex = scrollLeft + (dragPercentage * slidesToShow * scrollSensitivity);
+      const clampedIndex = Math.max(0, Math.min(maxIndex, newIndex));
+      setCurrentIndex(clampedIndex);
+    }
   };
 
   const handleDragEnd = () => {
+    isMouseDownRef.current = false;
     setIsDragging(false);
     setCurrentIndex(Math.round(currentIndex));
   };

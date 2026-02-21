@@ -91,7 +91,7 @@ const Hero = () => {
             </h1>
             <div className="flex justify-center">
               <a
-                href="#works"
+                href="/services"
                 className="inline-flex items-center gap-3 bg-[#2e8bc9] text-white py-4 px-8 rounded-full font-semibold text-[0.9375rem] uppercase tracking-[0.05em] transition-all duration-300 hover:bg-[#2579b0] hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(46,139,201,0.4)]"
               >
                 Let&apos;s Recent Works
