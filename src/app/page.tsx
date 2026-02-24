@@ -4,7 +4,7 @@ import Services from '@/components/Services';
 import About from '@/components/About';
 import SolutionProcess from '@/components/SolutionProcess';
 import PremiumServices from '@/components/PremiumServices';
-import Team from '@/components/Team';
+// import Team from '@/components/Team';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -17,7 +17,7 @@ export default function Home() {
         <About />
         <SolutionProcess />
         <PremiumServices />
-        <Team />
+        {/* <Team /> */}
       </main>
       <Footer />
     </>

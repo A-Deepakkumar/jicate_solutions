@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Header from '@/components/Header';
-import PageBanner from '@/components/PageBanner';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -13,8 +12,7 @@ export default function ContactPage() {
   return (
     <>
       <Header />
-      <main>
-        <PageBanner title="Contact Us" breadcrumb="Contact" />
+      <main className="pt-[100px] sm:pt-[116px] lg:pt-[124px]">
         <Contact />
         {/* Map Section */}
         <section className="map-section">

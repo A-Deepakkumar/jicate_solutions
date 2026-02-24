@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Header from '@/components/Header';
-import PageBanner from '@/components/PageBanner';
 import Footer from '@/components/Footer';
 import ServicesPage from './ServicesPage';
 
@@ -13,8 +12,7 @@ export default function Services() {
   return (
     <>
       <Header />
-      <main>
-        <PageBanner title="Our Services" breadcrumb="Services" />
+      <main className="pt-[100px] sm:pt-[116px] lg:pt-[124px]">
         <ServicesPage />
       </main>
       <Footer />

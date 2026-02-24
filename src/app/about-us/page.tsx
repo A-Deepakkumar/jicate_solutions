@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import Header from '@/components/Header';
-import PageBanner from '@/components/PageBanner';
 import About from '@/components/About';
 import Footer from '@/components/Footer';
 
@@ -13,8 +12,7 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <main>
-        <PageBanner title="About Us" breadcrumb="About Us" />
+      <main className="pt-[100px] sm:pt-[116px] lg:pt-[124px]">
         <About />
       </main>
       <Footer />
