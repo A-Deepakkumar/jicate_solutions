@@ -78,7 +78,7 @@ export function BottomNavbar() {
       className="fixed bottom-0 left-0 right-0 z-[80] lg:hidden bg-white border-t border-gray-200 shadow-[0_-4px_20px_rgba(0,0,0,0.1)]"
       style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
     >
-      <div className="flex items-center justify-around max-w-[600px] mx-auto">
+      <div className="flex items-center justify-around w-full max-w-[600px] mx-auto">
         {NAV_ITEMS.map(({ name, href, Icon }) => {
           const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
           return (

@@ -17,12 +17,6 @@ body {
   min-width: 320px;
 }
 
-/* Extra bottom space on mobile so page content isn't hidden under the fixed bottom navbar */
-@media (max-width: 1023px) {
-  body {
-    padding-bottom: 64px;
-  }
-}
 
 img,
 video {

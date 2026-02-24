@@ -73,7 +73,7 @@ const PremiumServices = () => {
 
       {/* Scroll to top button */}
       <button
-        className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 z-40 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:border-[#2e8bc9] text-gray-600 hover:text-[#2e8bc9] [&_svg]:w-4 [&_svg]:h-4 sm:[&_svg]:w-5 sm:[&_svg]:h-5"
+        className="fixed bottom-20 right-4 sm:right-8 lg:bottom-8 w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 z-40 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:border-[#2e8bc9] text-gray-600 hover:text-[#2e8bc9] [&_svg]:w-4 [&_svg]:h-4 sm:[&_svg]:w-5 sm:[&_svg]:h-5"
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         aria-label="Scroll to top"
       >

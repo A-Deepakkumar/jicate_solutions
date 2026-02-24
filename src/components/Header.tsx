@@ -6,7 +6,6 @@ import Image from 'next/image';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,7 +58,7 @@ const Header = () => {
       {/* Top Bar */}
       {!isScrolled && (
         <div className="bg-[#6295c4] text-white py-2.5">
-          <div className="max-w-[1280px] mx-auto px-4 lg:px-8 flex items-center justify-between">
+          <div className="max-w-[1280px] mx-auto px-4 lg:px-8 flex items-center justify-center lg:justify-between">
             <div className="flex items-center gap-2 text-sm min-w-0">
               <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -89,7 +88,7 @@ const Header = () => {
 
       {/* Main Header */}
       <div className={`bg-white border-b border-gray-200 ${isScrolled ? 'shadow-[0_4px_20px_rgba(0,0,0,0.1)]' : ''}`}>
-        <div className="max-w-[1280px] mx-auto px-3 sm:px-4 lg:px-8 py-3 sm:py-4 flex items-center justify-between gap-2">
+        <div className="max-w-[1280px] mx-auto px-3 sm:px-4 lg:px-8 py-3 sm:py-4 flex items-center justify-center lg:justify-between gap-2">
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0">
             <div className="relative w-[110px] h-[40px] sm:w-[130px] sm:h-[46px] md:w-[150px] md:h-[52px] lg:w-[160px] lg:h-[55px]">
@@ -118,52 +117,7 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="block lg:hidden text-[#1a1a2e] p-2 bg-transparent border-none cursor-pointer"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg className="w-6 h-6 fill-none stroke-current" viewBox="0 0 24 24">
-              {isMobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <nav className="block lg:hidden bg-white border-t border-gray-200 animate-slide-down">
-            <div className="max-w-[1280px] mx-auto px-4 py-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="nav-link flex items-center justify-between py-3 text-[#1a1a2e] font-semibold uppercase text-[0.9375rem] border-b border-gray-200 last:border-b-0 transition-colors duration-300 hover:text-[#6295c4]"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                  <span className="nav-plus">+</span>
-                </Link>
-              ))}
-              <div className="flex items-center gap-4 pt-4 mt-2 border-t border-gray-200">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    className="flex items-center justify-center w-9 h-9 bg-[#6295c4] text-white rounded-full transition-colors duration-300 hover:bg-[#4a7aa8] [&_svg]:w-4 [&_svg]:h-4"
-                    aria-label={social.name}
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </nav>
-        )}
       </div>
     </header>
   );
